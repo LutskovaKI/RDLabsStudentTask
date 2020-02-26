@@ -18,6 +18,7 @@ public class LoginPageStepDef extends DefaultStepsData {
 
     @Steps
     private LoginPageSteps loginPageSteps;
+    private String admin;
 
     @Given("I am on the login page of application")
     public void goToLoginPage() {
@@ -61,5 +62,10 @@ public class LoginPageStepDef extends DefaultStepsData {
             boolean isButtonVisible = socialMediaContainer.then(By.xpath(".//a[contains(@class,'" + socialMediaButtonName + "')]")).isVisible();
             softly.assertThat(isButtonVisible).as(String.format("button %s not visible", socialMediaButtonName)).isTrue();
         }
+    }
+
+    @Then("I check that by default value in Username field is $admin")
+    public void checkUsernameFieldByDefaultIsAdmin (String admin) {
+        softly.assertThat(loginPageSteps.getDefaultUsername()).as("Text in user name field by default is different").isEqualTo(admin);
     }
 }
