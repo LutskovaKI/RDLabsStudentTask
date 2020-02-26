@@ -19,7 +19,7 @@ Then error message appears with text: Username cannot be empty
 Scenario: AC-3 Login to the application with empty password
 Meta: @regression
 When I login to application with username 'admin' and password ''
-Then error message appears with text: Username cannot be empty
+Then error message appears with text: Password cannot be empty
 
 Scenario: AC-4 Check that all roles available on login page
 Meta: @regression

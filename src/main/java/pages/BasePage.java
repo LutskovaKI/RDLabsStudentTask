@@ -46,7 +46,7 @@ public abstract class BasePage extends PageObject {
     }
 
     public void waitUntilSpinnerGone() {
-        waitUntilSpinnerGone(5);
+        waitUntilSpinnerGone(10);
     }
 
     public void waitUntilSpinnerGone(int seconds) {
@@ -78,6 +78,5 @@ public abstract class BasePage extends PageObject {
     public WebElementFacade getPopUpElement() {
         return withTimeoutOf(Duration.ofSeconds(10)).waitFor(popUpElement);
     }
-
 
 }

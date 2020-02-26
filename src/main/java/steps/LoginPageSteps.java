@@ -27,7 +27,7 @@ public class LoginPageSteps extends DefaultStepsData {
     @Step
     public void clickOnTheLoginAsDifferentRoleButton() {
         loginPage.clickOnTheLoginAsDifferentRoleButton();
-        loginPage.withTimeoutOf(Duration.ofSeconds(5)).waitFor(loginPage.getUserRoles());
+        loginPage.withTimeoutOf(Duration.ofSeconds(20)).waitFor(loginPage.getUserRoles());
     }
 
     @Step

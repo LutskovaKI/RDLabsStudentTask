@@ -7,10 +7,13 @@ import net.serenitybdd.core.pages.WebElementFacade;
 @Getter
 public class EmployeeTimeSheetsPage extends BasePage{
 
-    @FindBy(css = "#x_report_employeeId_empName")
+    @FindBy(id = "x_report_employeeId_empName")
     private WebElementFacade searchInputField;
 
     @FindBy(css = ".ac_results li")
     private WebElementFacade employeeNameAutoCompleteElement;
 
+    public void switchToFrame(){
+        getDriver().switchTo().frame("noncoreIframe");
+    }
 }

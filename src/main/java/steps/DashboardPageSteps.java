@@ -2,6 +2,8 @@ package steps;
 
 import emuns.ItemsContainer;
 import lombok.extern.slf4j.Slf4j;
+import net.serenitybdd.core.annotations.findby.FindBy;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
 @Slf4j
@@ -27,10 +29,10 @@ public class DashboardPageSteps extends DefaultStepsData {
         ItemsContainer itemsContainer = ItemsContainer.getItemsContainerName(sectionName);
         switch (itemsContainer) {
             case EMPLOYEE_DISTRIBUTION:
-                dashboardPage.getThreeDotsButton().waitUntilEnabled().click();
+                dashboardPage.getThreeDotsButtonEmployeeDistribution().waitUntilEnabled().click();
                 break;
             case LEAVE_TAKEN:
-                dashboardPage.getThreeDotsButton().waitUntilEnabled().click();
+                dashboardPage.getThreeDotsButtonLeaveTaken().waitUntilEnabled().click();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + itemsContainer);
