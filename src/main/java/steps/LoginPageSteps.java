@@ -39,4 +39,11 @@ public class LoginPageSteps extends DefaultStepsData {
     public String getDefaultUsername() {
         return loginPage.getLoginInputField().waitUntilEnabled().getValue();
     }
+
+    @Step
+    public String getPopUpErrorMessageAfterLoginWithWrongCredentials() {
+        log.info("Getting pop up error message after login to application with invalid credentials");
+        return loginPage.getPopUpErrorMessage().waitUntilVisible().getText();
+    }
 }
+

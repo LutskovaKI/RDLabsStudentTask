@@ -68,4 +68,16 @@ public class LoginPageStepDef extends DefaultStepsData {
     public void checkUsernameFieldByDefaultIsAdmin (String admin) {
         softly.assertThat(loginPageSteps.getDefaultUsername()).as("Text in user name field by default is different").isEqualTo(admin);
     }
+
+    @When("I login to application with username $admin_invalid and password $admin_invalid")
+    public void loginToApplicationWithWrongCredentials (String login, String password) {
+        loginPageSteps.loginToApplication(login, password);
+    }
+
+    @Then("pop up appears with text: $popUpErrorText")
+    public void checkPopUpErrorMessageAfterLoginWithWrongCredentials (String errorTextMessage) {
+        softly.assertThat(loginPageSteps.getPopUpErrorMessageAfterLoginWithWrongCredentials()).as("Pop up error message after login with wrong credentials is shown")
+                .contains(errorTextMessage);
+    }
 }
+
