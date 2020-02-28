@@ -82,4 +82,14 @@ public class PersonalDatailsStepDef extends DefaultStepsData {
                 .contains(errorTextMessage);
     }
 
+    @When ("I check that EEO Race and Ethnicity select has NO value by default")
+    public void checkEEORaceAndEthnicityFieldHasNoValueByDefault() {
+        softly.assertThat(personalDetailsPage.getEeoRaceAndEthnicitySelect().waitUntilEnabled().getValue().isEmpty());
+    }
+
+    @Then ("I check that error message with text $errorText appears under EEO Race and Ethnicity field")
+    public void checkErrorMessageAppearsUnderEEORaceAndEthnicityFieldWithNoValue(String errorTextMessage) {
+        softly.assertThat(personalDetailsPage.getErrorMessageUnderEEORaceAndEthnicityFieldWithNoValue().waitUntilVisible().getText()).as("Wrong message is shown")
+                .contains(errorTextMessage);
+    }
 }
