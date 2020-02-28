@@ -7,6 +7,7 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jetbrains.annotations.NotNull;
+import org.joda.time.DateTime;
 import steps.DefaultStepsData;
 import steps.PersonalDetailsSteps;
 
@@ -63,6 +64,22 @@ public class PersonalDatailsStepDef extends DefaultStepsData {
     @Then("I check that Male radio button is unchecked")
     public void checkMaleRadioButtonIsUnchecked() {
         softly.assertThat(personalDetailsPage.getMaleRadioButtonAttribute()).isEqualTo(false);
+    }
+
+    @When("I set Date of Birth as tomorrow date")
+    public void setTomorrowDateOfBirth() {
+        personalDetailsSteps.enterDateIntoDateBirthField(DateTime.parse(DateTime.now().plusDays(1).toString()).toString(DATEPATTERN_OrangeHRM));
+    }
+
+    @Then("I click on Save button in Personal Details form")
+    public void saveTomorrowBirthDate() {
+        personalDetailsPage.clickOnSavePersonalDetailsButton();
+    }
+
+    @Then("I check that error message with text $errorText appears under Date of Birth field")
+    public void checkErrorMessageAfterTomorrowDateOfBirth(String errorTextMessage) {
+        softly.assertThat(personalDetailsPage.getErrorMessageAfterTomorrowDateOfBirth().waitUntilVisible().getText()).as("Wrong message is shown")
+                .contains(errorTextMessage);
     }
 
 }
