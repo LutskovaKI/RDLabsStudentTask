@@ -1,9 +1,12 @@
 package stepDefs;
 
 import com.google.common.collect.Ordering;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Steps;
+import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.jetbrains.annotations.NotNull;
 import steps.DefaultStepsData;
 import steps.PersonalDetailsSteps;
 
@@ -41,4 +44,25 @@ public class PersonalDatailsStepDef extends DefaultStepsData {
         boolean isSorted = Ordering.natural().isOrdered(optionsFromNationalitySelect);
         softly.assertThat(isSorted).as("Wrong ordering inside select box").isTrue();
     }
+
+    @When("under Gender label I set Male radio button as checked")
+    public void setMaleRadioButtonAsChecked() {
+        personalDetailsPage.clickOnMaleRadioButton();
+    }
+
+    @Then("I check that Female radio button is unchecked")
+    public void checkFemaleRadioButtonIsUnchecked() {
+        softly.assertThat(personalDetailsPage.getFemaleRadioButtonAttribute()).isEqualTo(false);
+    }
+
+    @When("I set Female radio button as checked")
+    public void setFemaleRadioButtonAsChecked() {
+        personalDetailsPage.clickOnFemaleRadioButton();
+    }
+
+    @Then("I check that Male radio button is unchecked")
+    public void checkMaleRadioButtonIsUnchecked() {
+        softly.assertThat(personalDetailsPage.getMaleRadioButtonAttribute()).isEqualTo(false);
+    }
+
 }

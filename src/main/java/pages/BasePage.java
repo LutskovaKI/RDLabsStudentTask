@@ -46,7 +46,7 @@ public abstract class BasePage extends PageObject {
     }
 
     public void waitUntilSpinnerGone() {
-        waitUntilSpinnerGone(10);
+        waitUntilSpinnerGone(15);
     }
 
     public void waitUntilSpinnerGone(int seconds) {
