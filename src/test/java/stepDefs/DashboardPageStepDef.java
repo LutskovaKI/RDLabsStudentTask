@@ -50,9 +50,9 @@ public class DashboardPageStepDef extends DefaultStepsData {
     }
 
     @Then ("I check that News section is present on Dashboard page with header $News")
-    public void checkNewsSectionIsPresentWithHeaderNews(String newsHeader) {
-        if (dashboardPage.checkNewsSectionIsPresent() == true) {
-            softly.assertThat(dashboardPage.getNewsSectionHeaderName()).as("News section is present on Dashboard page with header News").isEqualTo(newsHeader);
+    public void checkNewsSectionIsPresentWithHeaderNews(String headerName) {
+        if (dashboardPage.checkNewsSectionIsPresent()) {
+            softly.assertThat(dashboardPage.getNewsSectionHeaderName()).as("News section is present on Dashboard page with header News").isEqualTo(headerName);
         }
         else{
             System.out.println("News section is not present on Dashboard page");
@@ -64,5 +64,18 @@ public class DashboardPageStepDef extends DefaultStepsData {
         softly.assertThat(dashboardPage.newsCounter()).isEqualTo(dashboardPage.getRealAmountOfNews());
     }
 
+    @Then ("I check that Documents section is present on Dashboard page with header $Documents")
+    public void checkDocumentsSectionIsPresentWithHeaderDocuments(String headerName) {
+        if (dashboardPage.checkDocumentsSectionIsPresent()) {
+            softly.assertThat(dashboardPage.getDocumentsSectionHeaderName()).as("Documents section is present on Dashboard page with header Documents").isEqualTo(headerName);
+        }
+        else{
+            System.out.println("Documents section is not present on Dashboard page");
+        }
+    }
 
+    @Then ("I check that news counter (Showing: number / number) under Documents section is same as real amount of news in list")
+    public void checkThatNewsCounterEqualsToRealAmountOfDocuments(){
+        softly.assertThat(dashboardPage.documentsCounter()).isEqualTo(dashboardPage.getRealAmountOfDocuments());
+    }
 }

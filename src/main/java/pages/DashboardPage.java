@@ -28,11 +28,23 @@ public class DashboardPage extends BasePage {
     @FindBy(css = ".l6:nth-of-type(5) .dashboardCard-title-for-card")
     private WebElementFacade newsHeader;
 
+    @FindBy(css = ".dashboard-outline .l6:nth-of-type(4)")
+    private WebElementFacade documentsSection;
+
+    @FindBy(css = ".l6:nth-of-type(4) .dashboardCard-title-for-card")
+    private WebElementFacade documentsHeader;
+
     @FindBy(xpath = "//div[contains(@id,'dashboard__viewNewsOnDashboard')]//div[@class = 'inner']//ul//li")
     private List<WebElementFacade> listOfNews;
 
+    @FindBy(xpath = "//div[contains(@id,'dashboard__viewDocumentsOnDashboard')]//div[@class = 'inner']//ul//li")
+    private List<WebElementFacade> listOfDocuments;
+
     @FindBy(css = "#dashboard__viewNewsOnDashboard > div.document-count-text > div.right")
     private WebElementFacade realAmountOfNews;
+
+    @FindBy(css = "#dashboard__viewDocumentsOnDashboard > div.document-count-text > div.right")
+    private WebElementFacade realAmountOfDocuments;
 
     @FindBy(css = "#dashboard__viewDocumentsOnDashboard")
     private WebElementFacade documentsContainer;
@@ -62,11 +74,19 @@ public class DashboardPage extends BasePage {
        return newsHeader.waitUntilVisible().getText();
     }
 
+    public boolean checkDocumentsSectionIsPresent(){
+        return documentsSection.waitUntilVisible().isDisplayed();
+    }
+
+    public String getDocumentsSectionHeaderName() {
+        return documentsHeader.waitUntilVisible().getText();
+    }
+
     public int newsCounter(){
         int count = 0;
         List<WebElementFacade> listOfNews = getListOfNews();
         for (int i = 0; i < listOfNews.size(); i++) {
-            WebElementFacade webElementFacade = listOfNews.get(i);   // element = 0;  dashboardPage.getListOfNews = 16;  element = 0   temo = 56;
+            WebElementFacade webElementFacade = listOfNews.get(i);
             count++;
         }
         return count;
@@ -74,5 +94,19 @@ public class DashboardPage extends BasePage {
 
     public int getRealAmountOfNews(){
         return Integer.parseInt(realAmountOfNews.getText().split("/")[1].trim());
+    }
+
+    public int documentsCounter(){
+        int count = 0;
+        List<WebElementFacade> listOfDocuments = getListOfDocuments();
+        for (int i = 0; i < listOfDocuments.size(); i++) {
+            WebElementFacade webElementFacade = listOfDocuments.get(i);
+            count++;
+        }
+        return count;
+    }
+
+    public int getRealAmountOfDocuments(){
+        return Integer.parseInt(realAmountOfDocuments.getText().split("/")[1].trim());
     }
 }
