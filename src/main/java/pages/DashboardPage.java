@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 
+import java.util.List;
+
 @Getter
 @Slf4j
 public class DashboardPage extends BasePage {
@@ -19,6 +21,18 @@ public class DashboardPage extends BasePage {
 
     @FindBy(css = "#dashboard__viewNewsOnDashboard")
     private WebElementFacade newsContainer;
+
+    @FindBy(css = ".dashboard-outline .l6:nth-of-type(5)")
+    private WebElementFacade newsSection;
+
+    @FindBy(css = ".l6:nth-of-type(5) .dashboardCard-title-for-card")
+    private WebElementFacade newsHeader;
+
+    @FindBy(xpath = "//div[contains(@id,'dashboard__viewNewsOnDashboard')]//div[@class = 'inner']//ul//li")
+    private List<WebElementFacade> listOfNews;
+
+    @FindBy(css = "#dashboard__viewNewsOnDashboard > div.document-count-text > div.right")
+    private WebElementFacade realAmountOfNews;
 
     @FindBy(css = "#dashboard__viewDocumentsOnDashboard")
     private WebElementFacade documentsContainer;
@@ -40,4 +54,25 @@ public class DashboardPage extends BasePage {
         hideMenuButton.waitUntilVisible().waitUntilClickable().click();
     }
 
+    public boolean checkNewsSectionIsPresent(){
+        return newsSection.waitUntilVisible().isDisplayed();
+    }
+
+    public String getNewsSectionHeaderName() {
+       return newsHeader.waitUntilVisible().getText();
+    }
+
+    public int newsCounter(){
+        int count = 0;
+        List<WebElementFacade> listOfNews = getListOfNews();
+        for (int i = 0; i < listOfNews.size(); i++) {
+            WebElementFacade webElementFacade = listOfNews.get(i);   // element = 0;  dashboardPage.getListOfNews = 16;  element = 0   temo = 56;
+            count++;
+        }
+        return count;
+    }
+
+    public int getRealAmountOfNews(){
+        return Integer.parseInt(realAmountOfNews.getText().split("/")[1].trim());
+    }
 }
