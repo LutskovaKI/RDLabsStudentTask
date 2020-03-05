@@ -1,9 +1,16 @@
 package stepDefs;
 
+import grids.UsersGrid;
+import grids.WorkShiftGrid;
 import net.thucydides.core.annotations.Steps;
+import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.jbehave.core.model.ExamplesTable;
 import steps.DefaultStepsData;
 import steps.WorkShiftsSteps;
+
+import java.util.List;
+import java.util.Map;
 
 public class WorkShiftsStepDefs extends DefaultStepsData {
 
@@ -13,5 +20,12 @@ public class WorkShiftsStepDefs extends DefaultStepsData {
     @When("I click on Add Work Shift button")
     public void clickOnAddWorkShiftButton() {
         workShiftsSteps.clickOnAddWorkShiftButton();
+    }
+
+    @Then("I check that rows with values $firstValue, $secondValue in WorkShift column are shown by default")
+    public void checkValuesInDefaultWorkShift(String firstValue, String secondValue) {
+        List<WorkShiftGrid> allItems = workShiftsSteps.getWorkShiftGrid();
+        softly.assertThat(allItems.get(0).getWorkShift()).as("Wrong [First Value] is shown").isEqualTo(firstValue);
+        softly.assertThat(allItems.get(1).getWorkShift()).as("Wrong [Second Value] is shown").isEqualTo(secondValue);
     }
 }
