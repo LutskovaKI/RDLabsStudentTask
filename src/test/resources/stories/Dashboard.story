@@ -28,7 +28,7 @@ Then I check that news counter (Showing: number / number) under News section is 
 news in list
 
 Scenario: AC-4 Check that documents counter and actual amount of documents are same
-Meta: @regression @debug
+Meta: @regression
 Then I check that Documents section is present on Dashboard page with header Documents
 Then I check that news counter (Showing: number / number) under Documents section is same as real
 amount of news in list

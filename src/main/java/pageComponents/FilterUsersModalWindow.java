@@ -2,6 +2,8 @@ package pageComponents;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.asm.Advice;
+import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 
@@ -16,6 +18,7 @@ public class FilterUsersModalWindow {
     private WebElementFacade adminRole;
     private WebElementFacade superVisorRole;
     private WebElementFacade status;
+    private WebElementFacade disabledStatus;
     private WebElementFacade location;
     private WebElementFacade resetButton;
     private WebElementFacade cancelButton;
@@ -29,6 +32,7 @@ public class FilterUsersModalWindow {
         this.adminRole = modalWindow.find(By.xpath("//div[@id='adminroles_inputfileddiv']//input"));
         this.superVisorRole = modalWindow.find(By.xpath("//div[@id='supervisorroles_inputfileddiv']//input"));
         this.status = modalWindow.find(By.xpath("//div[@id='status_inputfileddiv']//input"));
+//      this.disabledStatus = modalWindow.find(By.xpath("//div[@id='status_inputfileddiv']//input[@value='Disabled']"));
         this.location = modalWindow.find(By.xpath("//div[@id='location_inputfileddiv']//input"));
         this.resetButton = modalWindow.find(By.xpath("//a[@ng-click='modal.reset()']"));
         this.cancelButton = modalWindow.find(By.xpath("//a[@ng-click='modal.cancel()']"));

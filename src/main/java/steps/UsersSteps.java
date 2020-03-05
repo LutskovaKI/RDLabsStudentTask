@@ -50,4 +50,17 @@ public class UsersSteps extends DefaultStepsData {
         log.info("Getting [Users] grid");
         return new UsersGrid().getAllItems(usersPage.getDriver());
     }
+
+    @Step
+    public boolean checkEmployeePresentAfterFiltering(String usersName){
+        List<UsersGrid> allItems = getUsersGrid();
+        int i = 0;
+        for (UsersGrid allItem : allItems) {
+            if (allItem.getEmployeeName().equals(usersName)) {
+                i++;
+            }
+        }
+        allItems.clear();
+        return i != 0;
+    }
 }
