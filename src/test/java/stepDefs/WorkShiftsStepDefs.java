@@ -28,4 +28,15 @@ public class WorkShiftsStepDefs extends DefaultStepsData {
         softly.assertThat(allItems.get(0).getWorkShift()).as("Wrong [First Value] is shown").isEqualTo(firstValue);
         softly.assertThat(allItems.get(1).getWorkShift()).as("Wrong [Second Value] is shown").isEqualTo(secondValue);
     }
+
+    @Then ("I click on Save button in Add Work Shift window")
+    public void clickOnSaveAddWorkShiftButton()  {
+        workShiftPage.clickOnSaveAddWorkShiftButton();
+    }
+
+    @Then ("I check that $errorMessage error message is shown under Work Shift field")
+    public void errorMessageIsShownUnderWorkShiftField(String errorMessage) {
+        softly.assertThat(workShiftPage.getDefaultErrorMessageText()).as("Text in error message field is different").contains(errorMessage);
+    }
+
 }
