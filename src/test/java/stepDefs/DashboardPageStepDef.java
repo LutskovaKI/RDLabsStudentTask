@@ -1,6 +1,7 @@
 package stepDefs;
 
 import net.thucydides.core.annotations.Steps;
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import steps.CommonSteps;
@@ -27,6 +28,7 @@ public class DashboardPageStepDef extends DefaultStepsData {
     //https://jbehave.org/reference/latest/aliases.html
 
     @When("I click on hide menu button")
+    @Alias("I click on show menu button")
     public void whenClickOnTheHideMenuButton() {
         dashboardPageSteps.clickOnHideMenuButton();
     }
@@ -36,6 +38,9 @@ public class DashboardPageStepDef extends DefaultStepsData {
         String warningMessage = "Menu not " + condition + " after clicking on the hide/show menu button";
         if (condition.equals("disappear")) {
             softly.assertThat(commonSteps.isMenuAvatarVisibleNow()).as(warningMessage).isFalse();
+        }
+        if (condition.equals("appear")) {
+            softly.assertThat(commonSteps.isMenuAvatarVisibleNow()).as(warningMessage).isTrue();
         }
     }
 

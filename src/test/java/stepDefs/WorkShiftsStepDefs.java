@@ -39,4 +39,16 @@ public class WorkShiftsStepDefs extends DefaultStepsData {
         softly.assertThat(workShiftPage.getDefaultErrorMessageText()).as("Text in error message field is different").contains(errorMessage);
     }
 
+//    @Then ("Using time picker I set 10:50 value into From filed")
+//
+//    @Then ("Using time picker I set 18:20 value into To filed")
+//
+//    @Then ("I check that 7.50 value calculated in Hours Per Day field")
+//
+//    @Then ("Using time picker I set 8:05 value into From filed")
+//
+//    @Then ("Using time picker I set 20:25 value into To filed")
+//
+//    @Then ("I check that 12.33 value calculated in Hours Per Day field")
+
 }

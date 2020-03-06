@@ -46,7 +46,7 @@ Meta: @regression
 Then I check that by default value in Username field is admin
 
 Scenario: AC-7 Check that pop up messege with text 'Invalid Credentials' is shown after login with invalid credentials
-Meta: @regression
+Meta: @regression @debug
 When I login to application with username admin_invalid and password admin_invalid
 Then pop up appears with text: Invalid Credentials
 

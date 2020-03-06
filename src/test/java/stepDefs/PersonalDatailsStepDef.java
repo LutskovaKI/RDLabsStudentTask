@@ -46,29 +46,24 @@ public class PersonalDatailsStepDef extends DefaultStepsData {
         softly.assertThat(isSorted).as("Wrong ordering inside select box").isTrue();
     }
 
-    @When("under Gender label I set Male radio button as checked")
-    public void setMaleRadioButtonAsChecked() {
-        personalDetailsPage.clickOnMaleRadioButton();
+    @When("I click on $gender radio button")
+    public void setGenderRadioButtonAsChecked(String gender){
+        personalDetailsSteps.checkGenderButton(gender);
     }
 
-    @Then("I check that Female radio button is unchecked")
-    public void checkFemaleRadioButtonIsUnchecked() {
-        softly.assertThat(personalDetailsPage.getFemaleRadioButtonAttribute()).isEqualTo(false);
-    }
-
-    @When("I set Female radio button as checked")
-    public void setFemaleRadioButtonAsChecked() {
-        personalDetailsPage.clickOnFemaleRadioButton();
-    }
-
-    @Then("I check that Male radio button is unchecked")
-    public void checkMaleRadioButtonIsUnchecked() {
-        softly.assertThat(personalDetailsPage.getMaleRadioButtonAttribute()).isEqualTo(false);
+    @Then("$gender radio button is $condition")
+    public void checkGenderRadioButtonIsUnchecked(String gender, String condition) {
+        if (condition.contains("not")) {
+            softly.assertThat(personalDetailsSteps.checkSelectedGenderRadioButton(gender)).isFalse();
+        } else {
+            softly.assertThat(personalDetailsSteps.checkSelectedGenderRadioButton(gender)).isTrue();
+        }
     }
 
     @When("I set Date of Birth as tomorrow date")
     public void setTomorrowDateOfBirth() {
-        personalDetailsSteps.enterDateIntoDateBirthField(DateTime.parse(DateTime.now().plusDays(1).toString()).toString(DATEPATTERN_OrangeHRM));
+        String updatedDate = getDateInFutureOrPastFromNow(DATEPATTERN_OrangeHRM, 1);
+        personalDetailsSteps.enterDateIntoDateBirthField(updatedDate);
     }
 
     @Then("I click on Save button in Personal Details form")

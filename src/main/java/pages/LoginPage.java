@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.annotations.Step;
+import pageComponents.PopUp;
 
 import java.util.List;
 
@@ -57,5 +59,13 @@ public class LoginPage extends BasePage {
         log.info("Clicking on the [Login as a Different Role] button");
         loginAsDifferentRoleButton.waitUntilVisible().waitUntilClickable().click();
     }
+
+    public String getPopUpErrorMessageAfterLoginWithWrongCredentials() {
+        log.info("Getting pop up error message after login to application with invalid credentials");
+        PopUp popUp = new PopUp(getPopUpErrorMessage().waitUntilEnabled());
+        return popUp.getPopUpMessage();
+    }
+
+
 
 }

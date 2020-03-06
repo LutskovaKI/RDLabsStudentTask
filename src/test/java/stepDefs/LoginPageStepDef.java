@@ -7,6 +7,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
 import org.openqa.selenium.By;
+import pageComponents.PopUp;
 import steps.DefaultStepsData;
 import steps.LoginPageSteps;
 
@@ -76,8 +77,9 @@ public class LoginPageStepDef extends DefaultStepsData {
 
     @Then("pop up appears with text: $popUpErrorText")
     public void checkPopUpErrorMessageAfterLoginWithWrongCredentials (String errorTextMessage) {
-        softly.assertThat(loginPageSteps.getPopUpErrorMessageAfterLoginWithWrongCredentials()).as("Pop up error message after login with wrong credentials is shown")
-                .contains(errorTextMessage);
+        softly.assertThat(loginPage.getPopUpErrorMessageAfterLoginWithWrongCredentials()).as("Wrong text in Invalid Credentials pop up")
+                .isEqualTo(errorTextMessage);
     }
+
 }
 
